@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #333;
+    }
+    header, footer {
+      background: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      gap: 20px;
+    }
+    .product-image, .product-details {
+      flex: 1 1 300px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .product-image img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .product-details h2 {
+      margin-top: 0;
+    }
+    .product-details button {
+      background: #28a745;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .product-details button:hover {
+      background: #218838;
+    }
+    .cart {
+      max-width: 1200px;
+      margin: 20px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NKOSIMK ENTERPRISE ONLINE STORE</h1>
+    <p>Find the best products here</p>
+  </header>
+
+  <div class="container">
+    <div class="product-image">
+      <img src="Cheers.jpg" alt="Product Image">
+ 
+    <div class="product-details">
+      <h2>Cheers</h2>
+      <p>Easter Deal</p>
+      <p><strong>Price: from R65.00</strong></p>
+      <button onclick="addToCart('Product Name', 65.00)">Add to Cart</button>
+    <div class="product-image">
+      <img src="Easter Menu.JPG" alt="Product Image">
+    </div>
+    <div class="product-details">
+      <h3>Easter Menu</h3>
+      <p>Easter Combo</p>
+      <p><strong>Price: from R100.00</strong></p>
+      <button onclick="addToCart('Product Name', 100.00)">Add to Cart</button>	  
+    </div>
+    <div class="product-image">
+      <img src="KOO Baked Beans.PNG" alt="Product Image">
+    </div>
+    <div class="product-details">
+      <h3>KOO Beaked Beans</h3>
+      <p>KOO Beaked Beans</p>
+      <p><strong>Price: from R18.00</strong></p>
+      <button onclick="addToCart('Product Name', 18.00)">Add to Cart</button>	  
+    </div>
+	 <div class="product-image">
+      <img src="Marshmallows.PNG" alt="Product Image">
+    </div>
+    <div class="product-details">
+      <h3>Marshmallows</h3>
+      <p>Beacon Marshmallows</p>
+      <p><strong>Price: from R90.00</strong></p>
+      <button onclick="addToCart('Product Name', 90.00)">Add to Cart</button>	  
+    </div>
+  </div>
+
+  <div class="cart">
+    <h2>Shopping Cart</h2>
+    <ul id="cartItems"></ul>
+    <p><strong>Total: R<span id="total">0.00</span></strong></p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 NKOSIMK ENTERPRISE ONLINE STORE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const cartItems = [];
+
+    function addToCart(name, price) {
+      cartItems.push({ name, price });
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartList = document.getElementById('cartItems');
+      const total = document.getElementById('total');
+      cartList.innerHTML = '';
+      let sum = 0;
+
+      cartItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `R{item.name} - {R}`;
+        cartList.appendChild(li);
+        sum += item.price;
+      });
+
+      total.textContent = sum.toFixed(2);
+    }
+  </script>
+</body>
+</html>
